@@ -1,10 +1,10 @@
 import Container from '../components/container'
-import MoreStories from '../components/more-posts'
-import Intro from '../components/intro'
+import Posts from '../components/posts'
+import Header from '../components/header'
 import Layout from '../components/layout'
+import Footer from '../components/footer'
 import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
 import Post from '../types/post'
 
 type Props = {
@@ -12,17 +12,17 @@ type Props = {
 }
 
 const Index = ({ allPosts }: Props) => {
-  const morePosts = allPosts.slice(1)
   return (
     <>
       <Layout>
         <Head>
           <title>ken-dev-blog</title>
         </Head>
+        <Header />
         <Container>
-          <Intro />
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          {allPosts.length > 0 && <Posts posts={allPosts} />}
         </Container>
+        <Footer />
       </Layout>
     </>
   )

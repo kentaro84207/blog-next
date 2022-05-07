@@ -3,6 +3,7 @@ import ErrorPage from 'next/error'
 import Container from '../../components/container'
 import PostBody from '../../components/post-body'
 import Header from '../../components/header'
+import Footer from '../../components/footer'
 import PostHeader from '../../components/post-header'
 import Layout from '../../components/layout'
 import { getPostBySlug, getAllPosts } from '../../lib/api'
@@ -25,17 +26,15 @@ const Post = ({ post, morePosts, preview }: Props) => {
   }
   return (
     <Layout preview={preview}>
+      <Header />
       <Container>
-        <Header />
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
         ) : (
           <>
-            <article className="mb-32">
+            <article>
               <Head>
-                <title>
-                  {post.title} | ken-dev-blog
-                </title>
+                <title>{post.title} | ken-dev-blog</title>
                 <meta property="og:image" content={post.ogImage.url} />
               </Head>
               <PostHeader
@@ -49,6 +48,7 @@ const Post = ({ post, morePosts, preview }: Props) => {
           </>
         )}
       </Container>
+      <Footer />
     </Layout>
   )
 }
